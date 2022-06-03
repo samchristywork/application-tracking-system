@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Application Tracker</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <div class=container>
+    <div class=left-list-pane>
+      <div class=job-items-heading>
+        <div>Title</div>
+        <div>Company</div>
+        <div>Date Submitted</div>
+        <div>Status</div>
+      </div>
+      <div id=job-items></div>
+    </div>
+    <div class=right-job-pane></div>
+  </div>
+  <form ref='uploadForm'
+    id='uploadForm'
+    action='/upload'
+    method='post'
+    encType="multipart/form-data">
+      <input type="file" name="doc" /><br>
+      <input type='submit' value='Upload' />
+  </form>
+</body>
+<script src="script.js"></script>
+</html>

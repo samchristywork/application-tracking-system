@@ -1,0 +1,23 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.job-items-row {
+  display: grid;
+  grid-template-columns: 10em 10em 10em 10em;
+}
+
+.job-items-row:hover {
+  background-color: #ccc;
+}
+
+.job-items-heading {
+  display: grid;
+  grid-template-columns: 10em 10em 10em 10em;
+  font-weight: bold;
+}
+
+.container {
+  display:grid;
+  grid-template-columns: 40em 1fr;
+}

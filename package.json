@@ -1,0 +1,24 @@
+{
+  "name": "application-tracking-system",
+  "version": "1.0.0",
+  "description": "A web app for tracking job applications.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samchristywork/application-tracking-system.git"
+  },
+  "author": "Sam Christy",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/samchristywork/application-tracking-system/issues"
+  },
+  "homepage": "https://github.com/samchristywork/application-tracking-system#readme",
+  "dependencies": {
+    "express-fileupload": "^1.4.0",
+    "express.js": "^1.0.0",
+    "morgan": "^1.10.0"
+  }
+}
