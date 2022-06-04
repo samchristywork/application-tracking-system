@@ -12,8 +12,11 @@ function change (id, key) {
 }
 
 function save () {
-  (async () => {
-    const rawResponse = await fetch('/save', {
+  let currentJobId = urlParams.get('job')
+  jobs[currentJobId].notes = document.querySelector("#notes").value
+  jobs[currentJobId].description = document.querySelector("#description").value
+
+  fetch('/save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -21,10 +24,16 @@ function save () {
       },
       body: JSON.stringify(jobs)
     })
-    const content = await rawResponse.text()
+    .then(x => x.text())
+    .then(y => {
+      console.log(y);
+    });
+}
 
-    console.log(content)
-  })()
+function add_cover_letter (id) {
+}
+
+function add_resume (id) {
 }
 
 function displayJob (id) {
@@ -35,12 +44,24 @@ function displayJob (id) {
   <h2 onclick='change("${id}", "company")'>${job.company}</h2>
   <h3 onclick='change("${id}", "date_submitted")'>${job.date_submitted}</h3>
   <h3 onclick='change("${id}", "status")'>${job.status}</h3>
-  <p  onclick='change("${id}", "notes")'>${job.notes}</p>
-  <p  onclick='change("${id}", "description")'>${job.description}</p>
+  <p>Notes:      <br><textarea id=notes rows=10 cols=20></textarea></p>
+  <p>Description:<br><textarea id=description rows=10 cols=20></textarea></p>
   <p  onclick='change("${id}", "some_other_attribute")'>${job.some_other_attribute}</p>
+  <button onclick='add_cover_letter("${id}")'>Add Cover Letter</button>
+  <button onclick='add_resume("${id}")'>Add Résumé</button>
+  <br>
   <button onclick='save()'>Save</button>
   `
   jobPane.innerHTML = html
+  let notes = document.querySelector("#notes");
+  let description = document.querySelector("#description");
+
+  if(job.notes){
+    notes.value=job.notes;
+  }
+  if(job.description){
+    description.value=job.description;
+  }
 }
 
 function addApplication () {
