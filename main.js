@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const fs = require('fs')
 const app = express()
 
+let prefix="/application-tracking-system/";
+
 /*
  * Middleware for file upload and to parse JSON POST requests.
  */
@@ -41,12 +43,12 @@ let jobs = {
  * Create a static route. Everything in the 'public' directory will be sent
  * as-is. That includes the index, CSS styling, script files, and images.
  */
-app.use(express.static('public'))
+app.use(prefix, express.static('public'))
 
 /*
  * Return the complete list of jobs in JSON format.
  */
-app.get('/jobs.json', function (req, res) {
+app.get(prefix+'jobs.json', function (req, res) {
   res.json(jobs)
 })
 
@@ -55,7 +57,7 @@ app.get('/jobs.json', function (req, res) {
  * the file contents. Files are placed in the "uploads" directory, so it is
  * important that that directory exists.
  */
-app.post('/upload', function (req, res) {
+app.post(prefix+'upload', function (req, res) {
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.doc) {
     return res.status(400).send('No files were uploaded.')
   }
@@ -77,7 +79,7 @@ app.post('/upload', function (req, res) {
  * done more efficiently and with less risk of data loss by updating only parts
  * of the "jobs" object.
  */
-app.post('/save', function (req, res) {
+app.post(prefix+'save', function (req, res) {
   if (req.body) {
     jobs = req.body
     res.status(200).send('OK.')

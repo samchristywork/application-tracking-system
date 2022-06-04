@@ -5,6 +5,8 @@ const jobPane = document.querySelector('.right-job-pane')
 
 let jobs = {}
 
+let prefix="/application-tracking-system/";
+
 function change (id, key) {
   const value = prompt('hi')
   jobs[id][key] = value
@@ -16,7 +18,7 @@ function save () {
   jobs[currentJobId].notes = document.querySelector("#notes").value
   jobs[currentJobId].description = document.querySelector("#description").value
 
-  fetch('/save', {
+  fetch(prefix+'save', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -37,7 +39,7 @@ function add_resume (id) {
 }
 
 function displayJob (id) {
-  window.history.pushState('', '', `/?job=${id}`)
+  window.history.pushState('', '', prefix+`?job=${id}`)
   const job = jobs[id]
   const html = `
   <h1 onclick='change("${id}", "title")'>${job.title}</h1>
@@ -98,7 +100,7 @@ function refresh () {
   displayJob(urlParams.get('job'))
 }
 
-fetch('/jobs.json')
+fetch(prefix+'jobs.json')
   .then(x => x.json())
   .then(y => {
     jobs = y
