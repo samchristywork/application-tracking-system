@@ -4,6 +4,11 @@ This is a web application that I will use to track job applications. This
 server will store metadata on each application, along with the résumé and
 cover letters that I submit to them.
 
+## Demo
+
+A live demo is available at
+[s-christy.com/application-tracking-system/](https://s-christy.com/application-tracking-system/)
+
 ## Setup
 
 To run this server you first need to install all of the dependencies:
