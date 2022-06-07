@@ -15,10 +15,13 @@ function change (id, key) {
 
 function save () {
   let currentJobId = urlParams.get('job')
-  jobs[currentJobId].notes = document.querySelector("#notes").value
-  jobs[currentJobId].description = document.querySelector("#description").value
+  let job = jobs[currentJobId]
+  if(job){
+    job.notes = document.querySelector("#notes").value
+    job.description = document.querySelector("#description").value
+  }
 
-  fetch(prefix+'save', {
+  fetch(prefix+'saveJobs', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -100,7 +103,7 @@ function refresh () {
   displayJob(urlParams.get('job'))
 }
 
-fetch(prefix+'jobs.json')
+fetch(prefix+'getJobs')
   .then(x => x.json())
   .then(y => {
     jobs = y

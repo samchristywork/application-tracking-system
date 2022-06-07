@@ -48,7 +48,7 @@ app.use(prefix, express.static('public'))
 /*
  * Return the complete list of jobs in JSON format.
  */
-app.get(prefix+'jobs.json', function (req, res) {
+app.get(prefix+'getJobs', function (req, res) {
   res.json(jobs)
 })
 
@@ -57,7 +57,7 @@ app.get(prefix+'jobs.json', function (req, res) {
  * the file contents. Files are placed in the "uploads" directory, so it is
  * important that that directory exists.
  */
-app.post(prefix+'upload', function (req, res) {
+app.post(prefix+'uploadFile', function (req, res) {
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.doc) {
     return res.status(400).send('No files were uploaded.')
   }
@@ -79,7 +79,7 @@ app.post(prefix+'upload', function (req, res) {
  * done more efficiently and with less risk of data loss by updating only parts
  * of the "jobs" object.
  */
-app.post(prefix+'save', function (req, res) {
+app.post(prefix+'saveJobs', function (req, res) {
   if (req.body) {
     jobs = req.body
     res.status(200).send('OK.')
