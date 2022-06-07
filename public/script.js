@@ -44,33 +44,37 @@ function add_resume (id) {
 function displayJob (id) {
   window.history.pushState('', '', prefix+`?job=${id}`)
   const job = jobs[id]
-  const html = `
-  <h1 onclick='change("${id}", "title")'>${job.title}</h1>
-  <h2 onclick='change("${id}", "company")'>${job.company}</h2>
-  <h3 onclick='change("${id}", "date_submitted")'>${job.date_submitted}</h3>
-  <h3 onclick='change("${id}", "status")'>${job.status}</h3>
-  <p>Notes:      <br><textarea id=notes rows=10 cols=20></textarea></p>
-  <p>Description:<br><textarea id=description rows=10 cols=20></textarea></p>
-  <p  onclick='change("${id}", "some_other_attribute")'>${job.some_other_attribute}</p>
-  <button onclick='add_cover_letter("${id}")'>Add Cover Letter</button>
-  <button onclick='add_resume("${id}")'>Add Résumé</button>
-  <br>
-  <button onclick='save()'>Save</button>
-  `
-  jobPane.innerHTML = html
-  let notes = document.querySelector("#notes");
-  let description = document.querySelector("#description");
+  if(job){
+    const html = `
+    <h1 onclick='change("${id}", "title")'>${job.title}</h1>
+    <h2 onclick='change("${id}", "company")'>${job.company}</h2>
+    <h3 onclick='change("${id}", "date_submitted")'>${job.date_submitted}</h3>
+    <h3 onclick='change("${id}", "status")'>${job.status}</h3>
+    <p>Notes:      <br><textarea id=notes rows=10 cols=20></textarea></p>
+    <p>Description:<br><textarea id=description rows=10 cols=20></textarea></p>
+    <p  onclick='change("${id}", "some_other_attribute")'>${job.some_other_attribute}</p>
+    <button onclick='add_cover_letter("${id}")'>Add Cover Letter</button>
+    <button onclick='add_resume("${id}")'>Add Résumé</button>
+    <br>
+    <button onclick='save()'>Save</button>
+    `
+    jobPane.innerHTML = html
+    let notes = document.querySelector("#notes");
+    let description = document.querySelector("#description");
 
-  if(job.notes){
-    notes.value=job.notes;
-  }
-  if(job.description){
-    description.value=job.description;
+    if(job.notes){
+      notes.value=job.notes;
+    }
+    if(job.description){
+      description.value=job.description;
+    }
   }
 }
 
 function addApplication () {
-  const id = btoa(Math.random()).substring(0, 12)
+  letters="abcdefghijklmnopqrstuvwxyz"
+  const id = [...Array(20).keys()].
+    map(x => letters[Math.floor(Math.random()*(letters.length-.000001))]).join("")
   jobs[id] = {
     title: 'Default Title',
     company: 'Default Company',
