@@ -1,14 +1,36 @@
+/*
+ * Save the parameters defined in the query string
+ */
 const urlParams = new URLSearchParams(window.location.search)
 
+/*
+ * Select the DOM elements
+ */
 const jobItems = document.querySelector('#job-items')
 const jobPane = document.querySelector('.right-job-pane')
 
+/*
+ * This variable is a JSON object that holds information about every job being
+ * tracked. The server holds a copy as well, and in fact that's how this
+ * variable gets populated.
+ */
 let jobs = {}
 
+/*
+ * This is the "URL prefix" that the user has to go to to access the system. I
+ * am using a proxy to host projects like this, so the user would go to a URL
+ * like:
+ *
+ * https://some.url/application-tracking-system/
+ */
 let prefix="/application-tracking-system/";
 
+/*
+ * An onclick callback that changes some value in the jobs struct, and
+ * refreshes the right pane.
+ */
 function change (id, key) {
-  const value = prompt('hi')
+  const value = prompt('Change Value:')
   jobs[id][key] = value
   displayJob(id)
 }
@@ -49,6 +71,7 @@ function displayJob (id) {
     <h1 onclick='change("${id}", "title")'>${job.title}</h1>
     <h2 onclick='change("${id}", "company")'>${job.company}</h2>
     <h3 onclick='change("${id}", "date_submitted")'>${job.date_submitted}</h3>
+asdf
     <h3 onclick='change("${id}", "status")'>${job.status}</h3>
     <p>Notes:      <br><textarea id=notes rows=10 cols=20></textarea></p>
     <p>Description:<br><textarea id=description rows=10 cols=20></textarea></p>
