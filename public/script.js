@@ -129,8 +129,10 @@ function addApplication () {
   refresh()
 }
 
-asdf
-
+/*
+ * Called on page load and when a new application is added. This populates the
+ * left pane with the extant job applications to be browsed and clicked on.
+ */
 function refresh () {
   jobItems.innerHTML = ''
   for (const jobId in jobs) {
@@ -147,13 +149,23 @@ function refresh () {
     jobItems.appendChild(d)
   }
 
+  /*
+   * Add the "Add Application" button at the bottom.
+   */
   const d = document.createElement('div')
   d.innerHTML = '<button>Add Application</button>'
   d.onclick = addApplication
   jobItems.appendChild(d)
+
+  /*
+   * Show the job that is being referred to by the URL query parameters.
+   */
   displayJob(urlParams.get('job'))
 }
 
+/*
+ * Get the list of jobs from the server and display them.
+ */
 fetch(prefix+'getJobs')
   .then(x => x.json())
   .then(y => {
