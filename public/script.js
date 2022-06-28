@@ -35,6 +35,10 @@ function change (id, key) {
   displayJob(id)
 }
 
+/*
+ * This sends the job struct back to the server to take the place of the old
+ * version.
+ */
 function save () {
   let currentJobId = urlParams.get('job')
   let job = jobs[currentJobId]
@@ -43,6 +47,9 @@ function save () {
     job.description = document.querySelector("#description").value
   }
 
+  /*
+   * Send the POST request
+   */
   fetch(prefix+'saveJobs', {
       method: 'POST',
       headers: {
@@ -57,12 +64,21 @@ function save () {
     });
 }
 
+/*
+ * onclick callback for a button that uploads a cover letter to the server.
+ */
 function add_cover_letter (id) {
 }
 
+/*
+ * onclick callback for a button that uploads a resume to the server.
+ */
 function add_resume (id) {
 }
 
+/*
+ * Populates the right hand pane with data from the job struct.
+ */
 function displayJob (id) {
   window.history.pushState('', '', prefix+`?job=${id}`)
   const job = jobs[id]
@@ -93,6 +109,8 @@ asdf
     }
   }
 }
+
+asdf
 
 function addApplication () {
   letters="abcdefghijklmnopqrstuvwxyz"
