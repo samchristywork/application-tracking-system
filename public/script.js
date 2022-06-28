@@ -87,7 +87,6 @@ function displayJob (id) {
     <h1 onclick='change("${id}", "title")'>${job.title}</h1>
     <h2 onclick='change("${id}", "company")'>${job.company}</h2>
     <h3 onclick='change("${id}", "date_submitted")'>${job.date_submitted}</h3>
-asdf
     <h3 onclick='change("${id}", "status")'>${job.status}</h3>
     <p>Notes:      <br><textarea id=notes rows=10 cols=20></textarea></p>
     <p>Description:<br><textarea id=description rows=10 cols=20></textarea></p>
@@ -98,9 +97,12 @@ asdf
     <button onclick='save()'>Save</button>
     `
     jobPane.innerHTML = html
+
+    /*
+     * Populate the text boxes with the correct data.
+     */
     let notes = document.querySelector("#notes");
     let description = document.querySelector("#description");
-
     if(job.notes){
       notes.value=job.notes;
     }
@@ -110,8 +112,10 @@ asdf
   }
 }
 
-asdf
-
+/*
+ * Create a new job application entry with a random ID and some default data
+ * entered in.
+ */
 function addApplication () {
   letters="abcdefghijklmnopqrstuvwxyz"
   const id = [...Array(20).keys()].
@@ -124,6 +128,8 @@ function addApplication () {
   }
   refresh()
 }
+
+asdf
 
 function refresh () {
   jobItems.innerHTML = ''
