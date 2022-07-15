@@ -1,3 +1,10 @@
+# Deprecated
+
+I am no longer using or actively developing this software. I have replaced it
+with a less graphical, but much more effective command-line program. I haven't
+yet decided whether I will replace the contents of this repository with that
+code, remove this repository, or simply leave it up.
+
 ![Banner](https://s-christy.com/status-banner-service/application-tracking-system/banner-slim.svg)
 
 ## Overview
