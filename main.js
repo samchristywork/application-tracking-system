@@ -89,6 +89,13 @@ app.post(prefix+'saveJobs', function (req, res) {
 })
 
 /*
+ * Redirect all traffic from root to the path specified by the prefix.
+ */
+app.get('/', function (req, res) {
+  res.redirect(prefix);
+})
+
+/*
  * Start the server on localhost port 8081.
  */
 app.listen(8081)
